@@ -422,7 +422,7 @@ section {
 section.mainContent {
 	display:table;
 	width:100%;
-	height:85%;
+	height: 85%;
 	padding:50px 0 100px 0;
 }
 
@@ -436,33 +436,6 @@ section.mainContent {
 	-moz-transition:border linear 0.2s,box-shadow linear 0.2s;
 	-o-transition:border linear 0.2s,box-shadow linear 0.2s;
 	transition:border linear 0.2s,box-shadow linear 0.2s;	
-}
-#contactform input,#contactform textarea {
-	border:0px;
-	border-bottom:2px solid #333;
-	width:100%;
-	background-color:transparent;
-	padding:20px 0px;
-	text-transform:uppercase;
-	letter-spacing:2px;
-	margin-bottom:20px;
-}
-#contactform input#submit {
-	width:auto;
-	border:2px solid;
-	padding:10px 20px;
-	display:inline-block;
-}
-#contactform input#submit:hover {
-	background-color:#333;
-	color:#fff;
-	border:2px solid #333;
-}
-#contactform input:focus,#contactform input:active,#contactform textarea:focus,#contactform textarea:active {
-	border-top:0px;
-	border-bottom:2px solid lightseagreen;
-	outline:0;
-	outline: none;
 }
 
 .bookshelfList li {
