@@ -441,3 +441,7 @@ section.mainContent {
 .bookshelfList li {
 	margin-bottom: 8px;
 }
+
+#clickMe {
+	color: blue;
+}
