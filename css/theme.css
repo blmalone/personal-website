@@ -416,8 +416,8 @@ section:after {
 section {
 	background-color:#efefef;
 	color:#333;
-	overflow:hidden;
-	height: 85%;
+	overflow:auto;
+	min-height: 85%;
 }
 
 section.mainContent {
@@ -447,5 +447,6 @@ section.mainContent {
 }
 
 textarea {
+  max-width: 220px;
   resize: none;
 } 
