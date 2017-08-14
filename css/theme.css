@@ -445,3 +445,7 @@ section.mainContent {
 #clickMe {
 	color: blue;
 }
+
+textarea {
+  resize: none;
+} 
