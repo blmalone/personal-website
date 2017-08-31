@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<meta content="Coming Soon" name="description">
+	<meta content="Blaine Malone" name="author">
+	<title>blainemalone</title>
+	<!-- Bootstrap Core CSS -->
+	<!-- Temp for local development -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="../css/bootstrap.min.css" rel="stylesheet"><!-- Custom CSS -->
+	<link href="../css/theme.css" rel="stylesheet"><!-- Custom Fonts -->
+	<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700,400italic,700italic" rel="stylesheet" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+</head>
+<body data-spy="scroll" data-target=".navbar-fixed-top" id="page-top">
+	<nav class="navbar navbar-inverse">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand active" href="../index.html">Blaine Malone - Software Engineer</a>
+	    </div>
+	    <ul class="nav navbar-nav">
+	      <li><a href="../index.html">Home</a></li>
+	      <li class="active"><a href="../blog.html">Blog</a></li>
+	      <li><a href="#">Resume</a></li>
+	      <li><a href="../bookshelf.html">Bookshelf</a></li>
+	    </ul>
+	    <form class="navbar-form navbar-left">
+	      <div class="input-group">
+	        <input type="text" class="form-control" placeholder="Search">
+	        <div class="input-group-btn">
+	          <button class="btn btn-default" type="submit">
+	            <i class="glyphicon glyphicon-search"></i>
+	          </button>
+	        </div>
+	      </div>
+	    </form>
+	  </div>
+	</nav>
+	<!-- Blog Section -->
+	<section class="mainContent">
+	<p>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<h3>Hosting a Public Web Server from Home - 03/08/17</h3>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-lg-12">
+					<b>Contents:</b> </br>
+					1. <a href="#intro_03_08_17">Intro</a></br>
+					2. <a href="#the_details_03_08_17">The Details</a></br>
+					3. <a href="#conclusion_03_08_17">Conclusion</a></br></br>
+
+					<b><a id="intro_03_08_17">Intro</a></b></br></br>
+
+					<p class="blog">I’ve seen plenty of online portfolios. Especially from undergraduates studying Computer Science. To create my own, I embarked on a slightly more unconventional approach (in 2017 that is).
+					The Raspberry Pi, an affordable, credit card sized computer was the instrument of choice. I’d bought one during university and it was just gathering dust. In an attempt save it from neglect, I used it to host this personal website.</br>
+					Although the project was small and took less than a day in total (spent a few hours here and there when I found the time). It was an educational one.</br></br>
+
+					Information consumed at university is often not given appropriate context. 
+					Depending on the module taken, you may find that much of the examinable material is theoretical. While this is beneficial for many reasons, it tends to commonly raises barriers when one tries to apply their newfound knowledge in a practical setting. </br>
+					The main goal of this side project was to solidify familiar concepts by building something of interest. </br></br>
+
+
+					Equipment:</br>
+					- MacBook Pro 2.4GHz Intel Core i5 16GB RAM - macOS Sierra</br>
+					- Raspberry Pi Model B 3</br>
+					- TalkTalk HUAWEI HG633</br>
+					- 32GB MicroSD Card/Reader</br>
+					- Micro USB cable </br>
+					- Ethernet Cable</br></br>
+
+					<b><a id="the_details_03_08_17">The Details</a></b></br></br>
+
+					In the interest of brevity, the focus of this post will be mainly on the lesser known concepts that you’re likely to encounter. However, I’ll still provide enough detail so that you could try the same at home. It’s also worth mentioning, my intention is not to explain in depth how these technologies work (as I’m still learning), but to instead give the reader a working knowledge to allow them to understand why and how things are done this way.</br></br>
+
+					1. <u>Purchase a Domain Name</u></br>
+					Evidently, I bought the domain ‘blainemalone.com’. It cost £14.89 from <a class="link" href="https://uk.godaddy.com/">GoDaddy</a>. I’d advise that you do this at the end of the project if you are unsure that you’ll see it through (in the meantime use the routers IP address to test if website is live). Also, there are other domain registrars. Price around to find the best offers for you. With this said, I did appreciate GoDaddy’s intuitive DNS management dashboard and troubleshooting forums.</br></br> 
+
+					2. <u>Set up Raspberry Pi</u></br>
+					Insert your Micro SD card into the reader and then into your laptop/desktop computer. Now we want to download the Raspbian OS from <a class="link" href="https://www.raspberrypi.org/downloads/raspbian/">here</a> (select minimal image, only using Pi as a webserver. As a result, we don’t really require a GUI).</br>
+					Once downloaded, I used <a class="link" href="https://etcher.io/">Etcher</a> to burn the .img file to the SD card. For more information on how to do this, see <a class="link" href="https://www.raspberrypi.org/documentation/installation/installing-images/README.md">here.</a></br>
+					After you completed this successfully, insert the SD card into the Raspberry Pi, connect the Micro USB for power and attach the Ethernet cable to both the Pi and the router. There are a series of common steps to setup a Raspberry Pi for use as a web server. For example, please ensure you have SSH enabled before moving on. </br></br>
+
+					3. <u>DHCP</u></br>
+					Once you have setup your Pi, you’ll want to know its IP address. In short, we want to be able to consistently locate our Pi in the local network. </br>
+					The best way to do this is to take advantage of the DHCP (Dynamic Host Configuration Protocol) Server built into your router. In short, DHCP helps with the allocation of IP addresses within a network. It removes the tedious process of manually configuring each machine which can be error-prone. As a brief reminder, every computer once it boots up, has a link layer address (MAC) embedded into their NIC (Network Interface Card). At this point it will not have an IP address so it must send a DHCP DISCOVER packet to the DHCP Server (Could be in same device as router or on a different network). In reply, the DHCP Server will allocate any one of its free IP addresses to the request using a DHCP OFFER packet. To be able to easily communicate with our Pi, we will want to ensure that the device is given a static IP address, i.e. one which doesn’t change, regardless of the device rebooting or loosing connection. </br></br>
+
+					To achieve this using the TalkTalk HUAWEI HG633 router, I logged into the admin portal at http://192.168.1.1/. Under ‘Home Network’>’LAN Interface’>’DHCP Reservation’. This allowed me to map the Pi’s MAC address to an available IP address. So, anytime the DHCP Server receives a DHCP DISCOVER packet from the Pi’s MAC address it will provision the same IP address to it every time (e.g. 192.168.1.222). This task is generally router specific, so you should spend a little time getting used to your setup.
+					You can find out more about DHCP <a class="link" href="https://tools.ietf.org/html/rfc2131">here</a>.</br></br>
+
+					4. <u>Port Forwarding/The DMZ</u></br>
+					Usually you’ll want your personal website to be public facing, allowing anyone to view it. To accomplish this, you have two options.</br>
+					The first approach, is to make use of the port forwarding capabilities that come with your router. Port forwarding maps an exposed port on your WAN IP address to a port on a LAN computer. In other words, it is a way of making a computer on your home network accessible to computers on the internet, even though they are behind a router. </br>
+					For help setting up port forwarding, you can check out this <a class="link" href="https://portforward.com/router.htm">website</a>. They’ve thoroughly covered many of the main manufacturers steps to configure port forwarding. Opting for the approach of placing your Pi behind the router will decrease your vulnerability to attacks. This is based on the assumption that your router doesn’t have a known exploit.</br>
+					Alternatively, you can configure a DMZ (Demilitarised Zone), effectively placing your Pi on a separate LAN to your home network. </br>
+					In the often-likely <a class="link" href="https://security.stackexchange.com/questions/85232/lots-of-ssh-tries-on-my-log-is-it-normal">event</a> that a malicious party gains, or tries to gain, access to your server, he/she should be isolated in the DMZ network and not have direct access to the private hosts. For home routers, when enabling a DMZ containing a device, you must ensure that it’ll have a static IP. Otherwise a different device may inherit the designated IP address and become the DMZ host instead (not cool).</br></br>
+
+					Favouring simplicity, I opted for the DMZ. My reasoning was, if the Pi was compromised, I’d be caught between a rock and a hard place. The key was realising I’d be more comfortable with my Pi being hacked than my whole network being exposed. Clearly, I’m avoiding the rabbit hole of sophisticated network security. It’s an area that I’m interested in and intend to concentrate more on in later posts. </br>
+					For now, here’s a few tips to quickly harden your web servers security: </br>
+
+					<ul>
+						<li>Change the default username and password that is shipped with the Raspberry Pi. i.e. username: pi password: raspberry.</li>
+						<li>Change the default port 22 on the Pi’s SSH Server. This is to help avoid brute force attacks and keeps the log file cleaner. Choose a vacant port below 1024, as only root users can listen on ports below 1024 on most Unix-like systems.</li>
+						<li>Use fail2ban https://www.fail2ban.org/ to prevent multiple attempts at an attacker guessing your password if they happen to find which port your SSH is listening on via scanning. </br></br></li>
+					</ul>
+
+					5. <u>SSH & SFTP</u></br>
+					Using SSH (Secure Shell) to communicate with the Pi provides a secure medium to pass commands to the shell. Windows users can install ‘Putty’ SSH or Tera Term but Mac OS X users should already have SSH capabilities preinstalled. </br>
+					Using the static IP address configured earlier (192.168.1.222), connect to your device via the CLI from your terminal. </br>
+					Once authenticated, the next step is to install a web server. Initially I went with a traditional apache instance. However, after playing with <a class="link" href="https://glitch.com/">Glitch</a> I gathered a little inspiration to mix things up. I settled on coupling Node.js with Express, this would become my web server.</br></br>
+
+					<i>Installing Node.js on Raspberry Pi:</i></br>
+					After realising that installing Node.js on the Raspberry Pi wasn’t a walk in the park. I continued my research to later find a very convenient project dubbed <a class="link" href="http://node-arm.herokuapp.com/">node _arm</a>. After two simple steps, you’ll have it installed, saving hours of scratching your head.</br></br>
+					<p class="code">
+						wget http://node-arm.herokuapp.com/node_latest_armhf.deb</br>
+						sudo dpkg -i node_latest_armhf.deb</br>
+					</p></br>
+					Make sure to install the Express framework once this is complete.</br>
+					<p class="code">
+						npm install express --save
+					</p></br>
+
+					Next, you’ll want to test that everything is working as expected. There is no shortage of Node.js <a class="link" href="https://www.tutorialspoint.com/nodejs/nodejs_express_framework.htm">tutorials</a> online, so take advantage of these to get up and running fast. 
+					If you’ve developed and executed the web app locally, it’s time to test it on the Pi.</br> I found that the easiest way to manage directories between your Pi and local machine is to use <a class="link" href="https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol">SFTP</a> (SSH File Transfer Protocol). <a class="link" href="https://cyberduck.io/?l=en">Cyberduck</a> is a free program (only when you download on their website, a download on the app store costs £22.99, I’m still not sure why) that establishes SFTP connections with remote devices.</br>Additionally, Cyberduck has distributions for Mac and Windows operating systems so it was an easy choice in this instance.</br></br>
+
+					<div class="col-lg-12 text-center">
+						<img id="cyberduck_image" src="../images/Cyberduck_config.png" alt="Cyberduck Example Setup" height="284" width="494" align="middle"></br></br>	
+					</div>
+
+					If you’ve followed this far, then congrats; both on understanding my vague instructions and finally being able to access your website publically.</br>
+					You should, in theory be able to access your sample website from your routers IP address. 
+					If not, double check that you’ve made sure that your Node.js web server is attached to port 80.
+
+					<p class="code">
+						app.listen(80);
+					</p></br>
+
+					6. <u>DDNS</u></br>
+					Section 3 introduced DHCP, and how it is used within your LAN at home. More often than not, your home network/router will be assigned an IP address in the same way via the Internet Service Providers (ISP) DHCP server. Some business owners may pay premium to be allocated a static IP address by their ISP. If this is you, then happy days. Otherwise, you’re going to own a dynamic IP. This can cause a few problems if you want to host a website from home. Those of which can be mainly addressed with DDNS.</br>
+					Firstly, what is DDNS (Dynamic Domain Name Service)? </br>
+					Having a dynamic IP address makes it difficult for users to access their home network. Requiring them to know their new IP address every time it changes.</br> A DDNS service like <a class="link" href="https://www.noip.com/">No-IP</a> will add a level of indirection by allowing your networks dynamic IP address to be hidden behind an easy to remember domain name. From this point, DNS will work as normal. E.g. No-IP will issue you with a domain name for your network (exampleuser.ddns.net). The IP address associated with this domain name will be automatically updated by No-IP client side software when your ISP changes your IP address. Therefore, always referencing the domain name from No-IP allows your end users to seamlessly connect to the network without keeping track of the dynamic IP. </br>
+					But I’ve purchased a domain name, does this mean I can’t use it?</br>
+					No, you can simply redirect all requests from your purchased domain name to the No-IP domain name by a process called <b>domain forwarding</b> (many DNS providers allow this functionality).</br></br>
+
+					7. <u>Containerization</u></br>
+					Just hours after thinking everything was running smoothly, I’d realised my setup was far from perfect.</br> I was sitting in a coffee shop when I noticed my site was down, even though it had been working when I left the house. So, what could’ve went wrong? I sifted through quite a few reasons as to why it might have happened. Did my house get hit by lightning and kill the electricity supply? Did I get so many users that my Pi caved in on itself? Unlikely.</br>
+					It wasn’t until I got home until I realised why it wasn’t serving my content. 
+					My SSH session had timed out. The Node.js process had been executing in the foreground of the terminal, so when my session expired, the process died; taking with it all access to my website. I’d read about ways to automatically keep an SSH session alive from projects like <a class="link" href="https://mistertea.github.io/EternalTCP/">EternalTCP</a>. But I had a hunch that this wasn’t the road to go down. For me it seemed like a hack, as I didn’t want my Node.js server to be attached to a terminal session.</br></br> The solution? I ‘daemon’-ized the process, with Docker.</br>
+					From here, it was straightforward. I needed to run my Node.js server in a Docker container. Here’s how…
+					<a class="link" href="https://github.com/hypriot/rpi-node-example-hello-world"> 
+						Source:
+					</a></br></br>
+					<p class="code">
+						FROM hypriot/rpi-iojs:1.4.1</br>
+						MAINTAINER Mathias Renner <mathias@hypriot.com></br></br>
+
+						# Adding source files into container</br>
+						ADD src/ /src</br></br>
+
+						# Define working directory</br>
+						WORKDIR /src</br></br>
+
+						# Install app dependencies</br>
+						RUN npm install</br></br>
+
+						# Open Port 80</br>
+						EXPOSE 80</br></br>
+
+						# Run Node.js</br>
+						CMD ["node", "index.js"]</br>
+					</p></br>
+
+					To start your container...
+					<p class="code">
+						docker build -t node-hello .</br>
+						docker run -p 80:80 --restart always -d node-hello
+					</p></br>
+
+
+					By employing Docker into my solution, I’d discovered that it had a lot to offer. Amusingly, I’d realised that recovering from the aforementioned lightning storm would be easier than expected (assuming power was eventually restored). Adjusting my containers restart policy meant that anytime my container died, it would always restart itself. </br>
+					More Raspberry Pi & Docker resources: <a class="link" href"https://blog.alexellis.io/getting-started-with-docker-on-raspberry-pi/ ">Here</a> & <a class="link" href"https://www.raspberrypi.org/blog/docker-comes-to-raspberry-pi/">Here</a>.</br></br>
+
+					<b><a id="conclusion_03_08_17">Conclusion</a></b></br></br>
+
+					Would I recommend trying to host a personal website from home? Absolutely.</br> It’s an enjoyable learning experience. However, I wouldn’t advise it for a long-term solution. At the time of writing, this site is currently hosted on <a class="link" href"https://aws.amazon.com/">AWS</a>. After noticing that my router suffered from intermittent outages for no apparent reason, robustness became a problem. In the end, I favoured ease of use and availability over anything else that the Pi had to offer.</br>
+					What are your thoughts on hosting a personal site from home?
+					Send me an <a href="mailto:blainemalone01@gmail.com">email</a> with any questions/thoughts on this article.</br></br>
+					
+					Thanks,</br>
+					Blaine</br></br>
+
+					<b><i>** Note:</b> Please be careful when configuring your router at home. Make sure you understand the implications of what you are doing, otherwise you could leave your home network vulnerable. I’ve highlighted some of the obvious vulnerabilities. Please remember, even in the best case, your setup will only ever be as secure as the least secure portion of whatever is accessible over the Internet.</i> </p>
+				</div>
+			</div>
+			<p></p>
+		</div>
+	</section>
+	<!-- Footer -->
+	 <div class="footer">
+	  <div>
+	  	<a href="https://www.linkedin.com/in/blainemalone/"><span class="fa fa-linkedin fa-2x"></span></a>
+ 		<a href="https://github.com/blmalone"><span class="fa fa-github fa-2x"></span></a>
+ 		<a href="../donate.html"><span class="fa fa-btc fa-2x"></span></a>
+	  </div>
+	  <div><a id="copyright">Copyright &copy; 2017 Blaine Malone</a></div>
+ 	</div>
+	<!-- jQuery -->
+	<script src="../js/jquery.js">
+	</script> <!-- Bootstrap Core JavaScript -->
+	<script src="../js/bootstrap.min.js">
+	</script> <!-- Plugin JavaScript -->
+	<script src="../js/jquery.easing.min.js">
+	</script>
+	<script src="../js/readremaining.jquery.js"></script>
+	<script>
+		$('body').readRemaining();
+	</script>
+</body>
+</html>
