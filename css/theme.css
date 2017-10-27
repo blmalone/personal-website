@@ -275,6 +275,12 @@ ul.banner-social-buttons {
 	}
 }
 
+.headerIcons {
+	max-height: 50px;
+	background: #000000;
+    color: #ffefc8;
+}
+
 .footer {
     height: 3em;
     background: #000000;
