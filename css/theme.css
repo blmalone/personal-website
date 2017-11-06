@@ -54,7 +54,6 @@ a:hover,a:focus {
 .navbar {
 	background-color: #000000;
 	margin-bottom: 0px;
-	border-left: thin solid #9d9d9d;
 }
 
 .navbar-custom .navbar-brand {
