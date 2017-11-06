@@ -110,11 +110,11 @@
 					This should return a long string which is the encrypted 12-word phrase. If you can’t find the Local Storage folder or are having trouble retrieving the mnemonic, you can install the <a class="link" href="https://chrome.google.com/webstore/detail/storage-area-explorer/ocfjjjjhkpapocigimmppepjgfdecjkb?hl=en" target="_blank">Storage Area Explorer</a> extension in Google Chrome. Right click on the Jaxx wallet and select “Inspect Pop-up”. Navigate to the “Storage Explorer” tab and choose window.localStorage. You can copy the mnemonic from the array of data there. Alternatively you can simply type, <span class="code">window.localStorage.mnemonic</span> in the Chrome console.
 					<br><br>
 
-					<div class="col-lg-12 text-center">
-						<img align="middle" alt="Encryted Mnemonic" id="encrypted_mnemoic" src="../images/encrypted_mnemoic.png" width="981" height="44"><br>
-						<br>
-					</div>
-					<br><br><br>
+					<p class="code">
+						> window.localStorage.mnemonic <br>
+						> fotQ+ffgUXP59/qBVR6h5pXFw61NMUopq6rkXI6DrMw22Bu60P3VfTceDkDBpaO0yffFiUqdgcWDHHmUFMoPy9Fj1DDgCYwjZcD1pL/HA06dx9+qAkYd4Gk4K60//HGf
+					</p>
+					<br><br>
 					Note down the returned value for the next step. Using the following code, we will substitute our value from above into the mnemonicEncrypted value. Before executing this script, ensure you have Node.js and Crypto-js installed: <span class="code">npm install crypto-js@3.1.2</span>.
 					<br><br>
 					Save the file below as <i>generateSeedPhrase.js</i> and then execute it in the Node.js runtime.
